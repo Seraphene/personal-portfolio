@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --font-serif: 'Lora', 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    * {
+      cursor: none;
+    }
+  }
+
+  body {
+    @apply bg-void-black text-white antialiased;
+    font-family: var(--font-serif);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer utilities {
+  /* Noise Grain Overlay */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Nebula Background */
+  .nebula-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .nebula-bg::before,
+  .nebula-bg::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: nebula 15s ease-in-out infinite;
+  }
+
+  .nebula-bg::before {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #E6E6FA 0%, transparent 70%);
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .nebula-bg::after {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #FFDAB9 0%, transparent 70%);
+    bottom: 20%;
+    right: 15%;
+    animation-delay: 5s;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Vintage Photo Filter */
+  .vintage-filter {
+    filter: sepia(20%) contrast(85%);
+  }
+
+  /* Glow Effects */
+  .glow-lavender {
+    box-shadow: 0 0 20px rgba(230, 230, 250, 0.3);
+  }
+
+  .glow-peach {
+    box-shadow: 0 0 20px rgba(255, 218, 185, 0.3);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 20px rgba(0, 255, 148, 0.3);
+  }
+}
