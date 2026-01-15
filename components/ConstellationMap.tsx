@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Cube, Zap, Star, ExternalLink } from "lucide-react";
+import { Box, Zap, Star, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProjectNode {
@@ -10,7 +10,7 @@ interface ProjectNode {
   title: string;
   tech: string;
   vibe: string;
-  icon: React.ReactNode;
+  iconType: "box" | "zap" | "star";
   x: number;
   y: number;
   url?: string;
@@ -22,7 +22,7 @@ const projects: ProjectNode[] = [
     title: "Blockchain Vehicle Registration",
     tech: "Hyperledger Fabric, DigitalOcean, Docker",
     vibe: "Hard Tech",
-    icon: <Cube className="w-5 h-5" />,
+    iconType: "box",
     x: 20,
     y: 30,
     url: "https://ltoblockchain.duckdns.org/",
@@ -32,7 +32,7 @@ const projects: ProjectNode[] = [
     title: "Lost & Found Automation",
     tech: "n8n, PHP, Webhooks",
     vibe: "Efficiency",
-    icon: <Zap className="w-5 h-5" />,
+    iconType: "zap",
     x: 60,
     y: 50,
   },
@@ -41,7 +41,7 @@ const projects: ProjectNode[] = [
     title: "Personal Portfolio",
     tech: "Next.js, Framer Motion",
     vibe: "Creative",
-    icon: <Star className="w-5 h-5" />,
+    iconType: "star",
     x: 40,
     y: 70,
   },
@@ -141,10 +141,28 @@ export default function ConstellationMap() {
 }
 
 function ProjectContent({ project }: { project: ProjectNode }) {
+  let IconComponent: React.ComponentType<{ className?: string }>;
+  
+  switch (project.iconType) {
+    case "box":
+      IconComponent = Box;
+      break;
+    case "zap":
+      IconComponent = Zap;
+      break;
+    case "star":
+      IconComponent = Star;
+      break;
+    default:
+      IconComponent = Box;
+  }
+
   return (
     <>
       <div className="flex items-start justify-between mb-3">
-        <div className="text-soft-lavender">{project.icon}</div>
+        <div className="text-soft-lavender">
+          <IconComponent className="w-5 h-5" />
+        </div>
         <ExternalLink className="w-4 h-4 text-soft-lavender/50 opacity-0 group-hover:opacity-100 transition-opacity" />
       </div>
       <h3 className="font-mono text-lg sm:text-xl font-bold mb-2 text-white">

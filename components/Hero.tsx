@@ -25,7 +25,10 @@ export default function Hero() {
       >
         <div className="w-full h-full border border-soft-lavender/30 rounded-full relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-muted-peach/30 rounded-full">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-terminal-green/30 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-terminal-green/30 rounded-full">
+              {/* Reactor Core */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-soft-lavender/20 rounded-full blur-3xl animate-pulse-glow" />
+            </div>
           </div>
         </div>
       </motion.div>
@@ -35,11 +38,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="font-mono text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6"
         >
-          <span className="text-soft-lavender">Kim Andrei</span>
+          <span className="font-serif italic font-light text-soft-lavender">Kim Andrei</span>
           <br />
-          <span className="text-muted-peach">Besmar.</span>
+          <span className="glitch-text font-mono font-bold text-muted-peach tracking-tighter" data-text="BESMAR">BESMAR</span>
         </motion.h1>
 
         <motion.p
