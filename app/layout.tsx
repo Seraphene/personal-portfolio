@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import PortalSystem from "@/components/PortalSystem";
+import SmoothScroll from "@/components/SmoothScroll";
+import Preloader from "@/components/Preloader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -34,11 +36,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${lora.variable}`}>
       <body className="noise-overlay">
-        <div className="nebula-bg" />
-        <PortalSystem />
-        <div className="vignette" />
-        <div className="scanlines" />
-        {children}
+        <Preloader />
+        <SmoothScroll>
+          <div className="nebula-bg" />
+          <PortalSystem />
+          <div className="vignette" />
+          <div className="scanlines" />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

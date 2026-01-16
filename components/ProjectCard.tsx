@@ -11,6 +11,7 @@ interface ProjectCardProps {
   accentColor?: "green" | "amber";
   delay?: number;
   url?: string;
+  className?: string;
 }
 
 export default function ProjectCard({
@@ -20,6 +21,7 @@ export default function ProjectCard({
   accentColor = "green",
   delay = 0,
   url,
+  className,
 }: ProjectCardProps) {
   const borderColor =
     accentColor === "green" ? "border-acid-green" : "border-sunset-amber";
@@ -68,7 +70,8 @@ export default function ProjectCard({
         borderColor,
         "bg-background hover:bg-opacity-10",
         "glitch-hover transition-all duration-200",
-        url && "cursor-pointer"
+        url && "cursor-pointer",
+        className
       )}
     >
       {url ? (

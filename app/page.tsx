@@ -1,23 +1,32 @@
 import Hero from "@/components/Hero";
-import ConstellationMap from "@/components/ConstellationMap";
+import HorizontalScroll from "@/components/HorizontalScroll";
 import TheDarkroom from "@/components/TheDarkroom";
 import Frequency from "@/components/Frequency";
 import CurrentFrequency from "@/components/CurrentFrequency";
 import OrbitRadio from "@/components/OrbitRadio";
 import CustomCursor from "@/components/CustomCursor";
 import Navigation from "@/components/Navigation";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative" style={{ zIndex: 2 }}>
-      <CustomCursor />
-      <Navigation />
-      <Hero />
-      <ConstellationMap />
-      <CurrentFrequency />
-      <TheDarkroom />
-      <Frequency />
-      <OrbitRadio />
-    </main>
+    <SmoothScroll>
+      <main className="min-h-screen relative">
+        <CustomCursor />
+        <Navigation />
+        
+        <Hero />
+        
+        {/* The New Horizontal Stream */}
+        <HorizontalScroll />
+        
+        {/* The Creative Grid */}
+        <CurrentFrequency />
+        <TheDarkroom />
+        
+        <Frequency />
+        <OrbitRadio />
+      </main>
+    </SmoothScroll>
   );
 }

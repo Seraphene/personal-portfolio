@@ -1,17 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useRef } from "react";
 
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   const scrollToContent = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Floating Abstract Shape */}
+    <motion.section
+      ref={ref}
+      style={{ opacity, scale, y }}
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background Abstract Shape */}
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-20"
         animate={{
@@ -26,13 +42,13 @@ export default function Hero() {
         <div className="w-full h-full border border-soft-lavender/30 rounded-full relative">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-muted-peach/30 rounded-full">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-terminal-green/30 rounded-full">
-              {/* Reactor Core */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-soft-lavender/20 rounded-full blur-3xl animate-pulse-glow" />
             </div>
           </div>
         </div>
       </motion.div>
 
+      {/* Main Text Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -40,9 +56,16 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6"
         >
-          <span className="font-serif italic font-light text-soft-lavender">Kim Andrei</span>
+          <span className="font-serif italic font-light text-soft-lavender">
+            Kim Andrei
+          </span>
           <br />
-          <span className="glitch-text font-mono font-bold text-muted-peach tracking-tighter" data-text="BESMAR">BESMAR</span>
+          <span 
+            className="glitch-text font-mono font-bold text-muted-peach tracking-tighter" 
+            data-text="BESMAR"
+          >
+            BESMAR
+          </span>
         </motion.h1>
 
         <motion.p
@@ -54,6 +77,7 @@ export default function Hero() {
           Architecting Systems on the Chain | Capturing Moments on Film.
         </motion.p>
 
+        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -76,7 +100,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Floating Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
@@ -84,6 +108,6 @@ export default function Hero() {
       >
         <ChevronDown className="w-6 h-6 text-white/40" />
       </motion.div>
-    </section>
+    </motion.section>
   );
 }

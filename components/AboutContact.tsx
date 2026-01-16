@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import MagneticButton from "./MagneticButton";
 
 export default function AboutContact() {
   const [typedText, setTypedText] = useState("");
@@ -159,7 +160,7 @@ export default function AboutContact() {
                   )}
                 />
               </div>
-              <button
+              <MagneticButton
                 type="submit"
                 className={cn(
                   "w-full px-6 py-3 border-2 border-acid-green border-sharp border-thick",
@@ -170,7 +171,7 @@ export default function AboutContact() {
               >
                 <Send className="w-4 h-4" />
                 Send Message
-              </button>
+              </MagneticButton>
             </form>
           </div>
         </div>

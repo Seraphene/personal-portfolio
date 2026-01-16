@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 interface CreativeItem {
   title: string;
@@ -43,8 +44,24 @@ const creativeItems: CreativeItem[] = [
 ];
 
 export default function TheDarkroom() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"],
+  });
+
+  // Create parallax transforms for different columns
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]); // Column 1: faster up
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);   // Column 2: slower/down
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -50]);  // Column 3: medium
+
+  // Split items into 3 columns
+  const column1 = creativeItems.slice(0, 2);
+  const column2 = creativeItems.slice(2, 4);
+  const column3 = creativeItems.slice(4);
+
   return (
-    <section id="creative" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="creative" className="py-20 px-4 sm:px-6 lg:px-8" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -56,37 +73,108 @@ export default function TheDarkroom() {
           <span className="text-soft-lavender">Darkroom</span>
         </motion.h2>
 
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-          {creativeItems.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="break-inside-avoid mb-6 group"
-              whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
-            >
-              <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
-                <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
-                  <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
-                    {item.imageUrl.replace("/", "").replace(".jpg", "")}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Column 1 */}
+          <motion.div style={{ y: y1 }} className="space-y-6">
+            {column1.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+                whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
+              >
+                <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
+                  <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
+                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
+                      {item.imageUrl.replace("/", "").replace(".jpg", "")}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach mb-2 rounded">
+                      {item.category}
+                    </span>
+                    <h3 className="font-mono text-base font-bold mb-1 text-white">
+                      {item.title}
+                    </h3>
+                    <p className="font-serif text-xs text-white/70">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
-                <div className="p-4">
-                  <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach mb-2 rounded">
-                    {item.category}
-                  </span>
-                  <h3 className="font-mono text-base font-bold mb-1 text-white">
-                    {item.title}
-                  </h3>
-                  <p className="font-serif text-xs text-white/70">
-                    {item.description}
-                  </p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Column 2 */}
+          <motion.div style={{ y: y2 }} className="space-y-6">
+            {column2.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (index + 2) * 0.1 }}
+                className="group"
+                whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
+              >
+                <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
+                  <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
+                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
+                      {item.imageUrl.replace("/", "").replace(".jpg", "")}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach mb-2 rounded">
+                      {item.category}
+                    </span>
+                    <h3 className="font-mono text-base font-bold mb-1 text-white">
+                      {item.title}
+                    </h3>
+                    <p className="font-serif text-xs text-white/70">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Column 3 */}
+          <motion.div style={{ y: y3 }} className="space-y-6">
+            {column3.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: (index + 4) * 0.1 }}
+                className="group"
+                whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
+              >
+                <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
+                  <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
+                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
+                      {item.imageUrl.replace("/", "").replace(".jpg", "")}
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach mb-2 rounded">
+                      {item.category}
+                    </span>
+                    <h3 className="font-mono text-base font-bold mb-1 text-white">
+                      {item.title}
+                    </h3>
+                    <p className="font-serif text-xs text-white/70">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
