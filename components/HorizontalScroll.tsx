@@ -42,10 +42,10 @@ export default function HorizontalScroll() {
 
   return (
     <section ref={targetRef} className="relative h-[300vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden pt-24">
         
         {/* Title pinned to the background */}
-        <div className="absolute top-10 left-10 z-20 mix-blend-difference pointer-events-none">
+        <div className="absolute top-32 left-10 z-20 mix-blend-difference pointer-events-none">
           <h2 className="font-mono text-4xl md:text-6xl font-bold text-soft-lavender opacity-80">
             MISSION<br />LOGS
           </h2>

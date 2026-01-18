@@ -50,21 +50,21 @@ export default function Frequency() {
           >
             <div className="font-serif text-base sm:text-lg text-white/80 leading-relaxed space-y-4">
               <p>
-                When I'm not architecting systems on the blockchain or automating
-                workflows, you'll find me lost in the pages of{" "}
-                <span className="text-soft-lavender italic">"Lord of the Mysteries"</span>,
+                When I&apos;m not architecting systems on the blockchain or automating
+                workflows, you&apos;ll find me lost in the pages of{" "}
+                <span className="text-soft-lavender italic">&ldquo;Lord of the Mysteries&rdquo;</span>,
                 following the melancholic journey of{" "}
                 <span className="text-muted-peach italic">Frieren</span> through
                 time, or hunting for vintage cameras in second-hand shops.
               </p>
               <p>
-                There's something beautiful about the intersection of hard tech and
+                There&apos;s something beautiful about the intersection of hard tech and
                 soft aesthetics—the way a perfectly structured blockchain transaction
                 can feel as elegant as a well-composed photograph, or how a vintage
-                camera's mechanical precision mirrors the logic of clean code.
+                camera&apos;s mechanical precision mirrors the logic of clean code.
               </p>
               <p className="text-sm text-white/60 italic">
-                "Listening to jazz while drifting through space."
+                &ldquo;Listening to jazz while drifting through space.&rdquo;
               </p>
             </div>
           </motion.div>
