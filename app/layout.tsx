@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Lora } from "next/font/google";
 import "./globals.css";
-import PortalSystem from "@/components/PortalSystem";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
 
@@ -39,7 +38,6 @@ export default function RootLayout({
         <Preloader />
         <SmoothScroll>
           <div className="nebula-bg" />
-          <PortalSystem />
           <div className="vignette" />
           <div className="scanlines" />
           {children}

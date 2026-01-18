@@ -8,6 +8,9 @@ const navItems = [
   { label: "Mission Logs", href: "#projects" },
   { label: "The Darkroom", href: "#creative" },
   { label: "Frequency", href: "#about" },
+  { label: "UB Lost & Found", href: "https://ublf-2.onrender.com", external: true },
+  { label: "LTO Blockchain", href: "https://ltoblockchain.duckdns.org/", external: true },
+  { label: "Magazine", href: "/magazine" },
 ];
 
 export default function Navigation() {
@@ -28,15 +31,24 @@ export default function Navigation() {
               KAB
             </a>
             <div className="hidden md:flex items-center gap-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="font-serif text-sm text-white/70 hover:text-soft-lavender transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const common = "font-serif text-sm text-white/70 hover:text-soft-lavender transition-colors";
+                return item.external ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={common}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <a key={item.label} href={item.href} className={common}>
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>

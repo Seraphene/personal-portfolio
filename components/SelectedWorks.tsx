@@ -12,6 +12,13 @@ const projects = [
     url: "https://ltoblockchain.duckdns.org/",
   },
   {
+    title: "UB Lost & Found",
+    tag: "Web / Platform",
+    description: "Platform site for the UB Lost & Found initiative.",
+    accentColor: "amber" as const,
+    url: "https://ublf-2.onrender.com",
+  },
+  {
     title: "Lost & Found Automation",
     tag: "n8n / Automation / Workflow",
     description:
