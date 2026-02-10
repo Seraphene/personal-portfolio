@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import AboutContact from "@/components/AboutContact";
 import HorizontalScroll from "@/components/HorizontalScroll";
 import TheDarkroom from "@/components/TheDarkroom";
 import Frequency from "@/components/Frequency";
@@ -14,17 +15,20 @@ export default function Home() {
       <main className="min-h-screen relative">
         <CustomCursor />
         <Navigation />
-        
+
         <Hero />
-        
+
         {/* The New Horizontal Stream */}
         <HorizontalScroll />
-        
+
         {/* The Creative Grid */}
         <CurrentFrequency />
         <TheDarkroom />
-        
+
+
+
         <Frequency />
+        <AboutContact />
         <OrbitRadio />
       </main>
     </SmoothScroll>

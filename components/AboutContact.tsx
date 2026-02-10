@@ -9,7 +9,7 @@ import MagneticButton from "./MagneticButton";
 export default function AboutContact() {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  const fullText = "4th-year student, tech enthusiast, photography hobbyist.";
+  const fullText = "Automation, systems architecture, Web development.";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -75,7 +75,7 @@ export default function AboutContact() {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href="mailto:contact@example.com"
+                href="mailto:kimandrei012@gmail.com"
                 className={cn(
                   "p-3 border-2 border-acid-green border-sharp border-thick",
                   "text-acid-green hover:bg-acid-green hover:text-background",
@@ -85,6 +85,11 @@ export default function AboutContact() {
               >
                 <Mail className="w-5 h-5" />
               </a>
+            </div>
+
+            <div className="mt-6 font-mono text-sm text-gray-400">
+              <p>Contact No.: <span className="text-acid-green">+639672564545</span></p>
+              <p>Email: <span className="text-acid-green">kimandrei012@gmail.com</span></p>
             </div>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 interface CreativeItem {
   title: string;
@@ -111,34 +112,45 @@ export default function TheDarkroom() {
           {/* Column 2 */}
           <motion.div style={{ y: y2 }} className="space-y-6">
             {column2.map((item, index) => (
-              <motion.div
+              <Link
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: (index + 2) * 0.1 }}
+                href={item.title === "Prizmak Media" ? "/prizmak" : "#"}
                 className="group"
-                whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
               >
-                <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
-                  <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
-                    <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
-                      {item.imageUrl.replace("/", "").replace(".jpg", "")}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: (index + 2) * 0.1 }}
+                  whileHover={{ rotate: [0, -2, 2, -2, 0], transition: { duration: 0.3 } }}
+                >
+                  <div className="glass-strong rounded-lg overflow-hidden border border-white/10">
+                    <div className="relative aspect-[4/3] bg-gradient-to-br from-soft-lavender/10 to-muted-peach/10 vintage-filter">
+                      <div className="absolute inset-0 flex items-center justify-center text-white/20 font-mono text-sm">
+                        {item.imageUrl.replace("/", "").replace(".jpg", "")}
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach rounded">
+                          {item.category}
+                        </span>
+                        {item.title === "Prizmak Media" && (
+                          <span className="text-[10px] font-mono text-soft-lavender/50 animate-pulse">
+                            [VIEW CASE]
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-mono text-base font-bold mb-1 text-white">
+                        {item.title}
+                      </h3>
+                      <p className="font-serif text-xs text-white/70">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
-                  <div className="p-4">
-                    <span className="inline-block px-2 py-1 text-xs font-mono uppercase border border-white/20 text-muted-peach mb-2 rounded">
-                      {item.category}
-                    </span>
-                    <h3 className="font-mono text-base font-bold mb-1 text-white">
-                      {item.title}
-                    </h3>
-                    <p className="font-serif text-xs text-white/70">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </motion.div>
 

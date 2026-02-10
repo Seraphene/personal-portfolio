@@ -190,4 +190,20 @@
     clip: rect(85px, 550px, 140px, 0);
     animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
   }
+
+  /* 3D Tools */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* Extra Animations */
+  @keyframes nebula-float {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    50% { transform: translate(30px, -20px) scale(1.1); opacity: 0.5; }
+  }
+
+  .animate-nebula-delayed {
+    animation: nebula-float 20s ease-in-out infinite;
+    animation-delay: -10s;
+  }
 }

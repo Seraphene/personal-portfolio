@@ -7,7 +7,7 @@ import { useRef } from "react";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -60,13 +60,26 @@ export default function Hero() {
             Kim Andrei
           </span>
           <br />
-          <span 
-            className="glitch-text font-mono font-bold text-muted-peach tracking-tighter" 
+          <span
+            className="glitch-text font-mono font-bold text-muted-peach tracking-tighter"
             data-text="BESMAR"
           >
             BESMAR
           </span>
         </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: "backOut" }}
+          className="relative w-32 h-32 mx-auto mb-8 rounded-full overflow-hidden border-2 border-soft-lavender/50 shadow-[0_0_30px_rgba(230,230,250,0.3)]"
+        >
+          <img
+            src="/images/pfp.jfif"
+            alt="Kim Andrei Besmar"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}

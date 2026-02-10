@@ -35,6 +35,7 @@ const projects: ProjectNode[] = [
     iconType: "zap",
     x: 60,
     y: 50,
+    url: "https://ublf-2.onrender.com",
   },
   {
     id: "portfolio",
@@ -108,6 +109,7 @@ export default function ConstellationMap() {
                 left: `${project.x}%`,
                 top: `${project.y}%`,
                 transform: "translate(-50%, -50%)",
+                zIndex: 20
               }}
             >
               <motion.div
@@ -142,7 +144,7 @@ export default function ConstellationMap() {
 
 function ProjectContent({ project }: { project: ProjectNode }) {
   let IconComponent: React.ComponentType<{ className?: string }>;
-  
+
   switch (project.iconType) {
     case "box":
       IconComponent = Box;
