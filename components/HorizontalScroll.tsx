@@ -10,24 +10,28 @@ const projects = [
     tag: "Capstone / Hyperledger Fabric",
     description: "Decentralized government vehicle tracking system on DigitalOcean.",
     accentColor: "green" as const,
+    url: "https://ltoblockchain.duckdns.org/",
   },
   {
     title: "Lost & Found Automation",
     tag: "n8n / Workflow",
     description: "Automated retrieval logic for rapid item recovery.",
     accentColor: "green" as const,
+    url: "https://ublf-2.onrender.com",
   },
   {
     title: "Prizmak Media",
     tag: "Multimedia / Branding",
     description: "Teaser campaigns and asset design for creative agency.",
     accentColor: "amber" as const,
+    url: "/prizmak",
   },
   {
     title: "Portfolio V1",
     tag: "Next.js / Framer",
     description: "The cosmic archive you are currently browsing.",
     accentColor: "amber" as const,
+    url: "/magazine",
   },
 ];
 
@@ -64,6 +68,7 @@ export default function HorizontalScroll() {
                 tag={project.tag}
                 description={project.description}
                 accentColor={project.accentColor}
+                url={project.url}
                 className="h-[60vh] w-full transform transition-transform duration-500 group-hover:scale-[1.02] border-white/10 bg-black/40 backdrop-blur-md"
               />
               

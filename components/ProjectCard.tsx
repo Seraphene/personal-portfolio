@@ -23,6 +23,7 @@ export default function ProjectCard({
   url,
   className,
 }: ProjectCardProps) {
+  const isExternalLink = Boolean(url?.startsWith("http"));
   const borderColor =
     accentColor === "green" ? "border-acid-green" : "border-sunset-amber";
   const textColor =
@@ -77,9 +78,9 @@ export default function ProjectCard({
       {url ? (
         <a
           href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block"
+          target={isExternalLink ? "_blank" : undefined}
+          rel={isExternalLink ? "noopener noreferrer" : undefined}
+          className="block h-full"
         >
           {CardContent}
         </a>

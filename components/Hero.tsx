@@ -25,7 +25,7 @@ export default function Hero() {
     <motion.section
       ref={ref}
       style={{ opacity, scale, y }}
-      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-28 sm:pt-32 overflow-hidden"
     >
       {/* Background Abstract Shape */}
       <motion.div
@@ -89,6 +89,24 @@ export default function Hero() {
         >
           Architecting Systems on the Chain | Capturing Moments on Film.
         </motion.p>
+
+        {/* Contact & Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          className="flex flex-col items-center gap-6 mb-12"
+        >
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 font-mono text-sm text-soft-lavender/80">
+            <a href="mailto:kimandrei012@gmail.com" className="hover:text-white transition-colors flex items-center gap-2">
+              <span className="text-acid-green">@</span> kimandrei012@gmail.com
+            </a>
+            <span className="hidden sm:inline text-white/20">|</span>
+            <span className="flex items-center gap-2">
+              <span className="text-acid-green">#</span> +639672564545
+            </span>
+          </div>
+        </motion.div>
 
         {/* CTA Button */}
         <motion.div
